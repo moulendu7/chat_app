@@ -1,192 +1,122 @@
-```md
-# 💬 Real-Time Chat Application
+# Realtime Chat Application
 
-A secure, real-time multi-room chat application built with React, Node.js, Socket.IO, and MongoDB.  
-Users can create rooms, join rooms using a Room ID, and chat in real time with live participant updates and message persistence.
-
----
-
-## ✨ Features
-
-- JWT authentication (login & signup)
-- Create & join chat rooms
-- Room access validation (URL tamper protection)
-- Live participant updates
-- Real-time messaging (Socket.IO)
-- Message persistence (MongoDB)
-- Offline users receive messages on rejoin
-- No duplicate messages
-- Deployed frontend & backend separately
-- Clean layered architecture (Controller → Service → Repository)
+A realtime room-based chat application built using React, Node.js, Express, MongoDB, and Socket.IO.  
+The app supports authentication, protected chat rooms, live participants updates, and realtime messaging with message persistence.
 
 ---
 
-## 🛠️ Tech Stack
+## Features
+
+- JWT based Authentication (Login / Signup)
+- Create and Join Chat Rooms using Room ID
+- Protected Routes (Unauthorized users redirected)
+- Realtime Messaging using Socket.IO
+- Live Participants Count per Room
+- Message Persistence with MongoDB
+- Automatic Room Validation (Invalid room IDs redirect to Dashboard)
+- Modern UI with consistent dark theme
+
+---
+
+## Tech Stack
 
 ### Frontend
 - React (Vite)
-- Tailwind CSS
+- React Router
 - Axios
 - Socket.IO Client
-- React Router
-- Lucide Icons
+- Tailwind CSS
 
 ### Backend
 - Node.js
 - Express
-- Socket.IO
-- MongoDB (Mongoose)
+- MongoDB + Mongoose
 - Passport JWT
-- UUID
-
-### Deployment
-- Frontend → Vercel (free)
-- Backend → Render (free)
-- Database → MongoDB Atlas (free)
+- Socket.IO
 
 ---
 
-## 🧩 Architecture
+## Project Structure
 
-Frontend (Vercel) → Backend (Render) → Database (MongoDB Atlas)
+client/
+- src/
+  - pages/
+  - context/
+  - socket.js
+  - App.jsx
 
-Sockets handle real-time events, database is the source of truth.
-
----
-
-## 📁 Project Structure
-
-```
-
-chat-app/
-├── client/
-│   ├── src/
-│   │   ├── pages/
-│   │   ├── context/
-│   │   ├── socket.js
-│   │   └── main.jsx
-│   └── package.json
-│
-├── server/
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── service/
-│   │   ├── repository/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── socket.js
-│   │   └── index.js
-│   └── package.json
-│
-└── README.md
-
-```
+server/
+- src/
+  - controllers/
+  - models/
+  - repository/
+  - service/
+  - routes/
+  - auth/
+  - index.js
 
 ---
 
-## ⚙️ Environment Variables
+## Environment Variables
 
-### Backend (`server/.env`)
-```
+### Frontend (.env)
+VITE_API_URL=http://localhost:3000
 
-MONGO_URI=mongodb+srv://...
-JWT_SECRET=your_secret
-PORT=3000
-
-```
-
-### Frontend (`client/.env`)
-```
-
-VITE_API_URL=[https://your-backend.onrender.com](https://your-backend.onrender.com)
-
-````
+### Backend (.env)
+PORT=3000  
+MONGO_URI=mongodb://localhost:27017/chat_app  
+JWT_SECRET=your_secret_key  
+FRONTEND_URL=http://localhost:5173  
 
 ---
 
-## 🚀 Running Locally
+## How to Run Locally
 
 ### Backend
-```bash
-cd server
-npm install
-npm run dev
-````
+cd server  
+npm install  
+npm run dev  
 
 ### Frontend
-
-```bash
-cd client
-npm install
-npm run dev
-```
+cd client  
+npm install  
+npm run dev  
 
 ---
 
-## 🔌 Socket Events
+## Realtime Logic
 
-| Event               | Description                |
-| ------------------- | -------------------------- |
-| join-room           | Join socket room           |
-| participant-updated | Notify participant changes |
-| send-message        | Send message               |
-| receive-message     | Receive message            |
+- Users join rooms via Socket.IO
+- Messages are saved in MongoDB and broadcasted in realtime
+- Participants count updates live when users join or leave
+- Offline users receive all missed messages when they rejoin
 
 ---
 
-## 🔐 Security
+## Route Protection
 
-* JWT protected routes
-* Server-side room validation
-* URL tamper protection
-* Secure environment variables
-* Database hosted on MongoDB Atlas
+- Invalid Room ID redirects user to Dashboard
+- Users not part of a room cannot access it via URL
+- JWT token required for all protected routes
 
 ---
 
-## 📦 Deployment (Free)
+## Future Enhancements
 
-* Backend → Render
-* Frontend → Vercel
-* Database → MongoDB Atlas
-
----
-
-## 🧪 Test Checklist
-
-* Login / Signup works
-* Create room
-* Join room
-* Live participant update
-* Live chat messaging
-* Message history reload
-* Access validation
-* Socket reconnect works
+- Typing indicators
+- Online / Offline status
+- Message read receipts
+- Media sharing
+- Room admin controls
 
 ---
 
-## 📌 Future Improvements
+## Author
 
-* Typing indicator
-* Online/offline presence
-* Read receipts
-* File sharing
-* Push notifications
-* Redis socket adapter
+Built by Moulendu
 
 ---
 
-## 👨‍💻 Author
+## License
 
-Moulendu Khanra
-Full Stack Developer • IIIT Ranchi
-
----
-
-## ⭐ Support
-
-If you like this project, give it a star and feel free to fork & improve it.
-
-```
-```
-"# chat_app" 
+Open source project, free to use and modify
